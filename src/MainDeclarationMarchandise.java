@@ -1,9 +1,12 @@
+import vue.VuePrincipale;
 
 public class MainDeclarationMarchandise {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	@SuppressWarnings("static-access")
+    public static void main(String[] args) {
+        VuePrincipale vuePrincipale = new VuePrincipale();
+        vuePrincipale.launch(VuePrincipale.class, args);
 
-	}
+    }
 
 }

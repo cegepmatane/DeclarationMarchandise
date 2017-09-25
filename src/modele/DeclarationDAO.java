@@ -29,19 +29,17 @@ public class DeclarationDAO
         }
     }
     
-    public List<Declaration> afficherListeArmateur(){
+    public List<Declaration> afficherListeDeclaration(){
         List<Declaration> listeDeclaration = new ArrayList<>();
 
         try{
             System.out.println("Creating statement...");
             Statement stmt = conn.createStatement();
-            String sql = "SELECT idDeclaration, nom FROM declaration";
+            String sql = "SELECT * FROM declaration";
             ResultSet rs = stmt.executeQuery(sql);
 
-            while (rs.next()) {
-                
-                String nom = rs.getString("nom");
-
+            while (rs.next()){
+            	
                 Declaration declaration = new Declaration();
                 
                 declaration.setIdDeclaration(rs.getInt("idDeclaration"));
@@ -63,5 +61,10 @@ public class DeclarationDAO
 
         return listeDeclaration;
     }
+
+	public void supprimerDeclaration(int id) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
