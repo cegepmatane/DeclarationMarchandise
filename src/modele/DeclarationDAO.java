@@ -28,5 +28,40 @@ public class DeclarationDAO
             e.printStackTrace();
         }
     }
+    
+    public List<Declaration> afficherListeArmateur(){
+        List<Declaration> listeDeclaration = new ArrayList<>();
+
+        try{
+            System.out.println("Creating statement...");
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT idDeclaration, nom FROM declaration";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                
+                String nom = rs.getString("nom");
+
+                Declaration declaration = new Declaration();
+                
+                declaration.setIdDeclaration(rs.getInt("idDeclaration"));
+                declaration.setNomBateau(rs.getString("nomBateau"));
+                declaration.setNomMarchandise(rs.getString("nomMarchandise"));
+                declaration.setDescriptionMarchandise(rs.getString("descriptionMarchandise"));
+                declaration.setTypeMarchandise(rs.getString("typeMarchandise"));
+                declaration.setPaysOrigineMatierePremiere(rs.getString("paysOrigineMatierePremiere"));
+                declaration.setPaysOrigineAssemblage(rs.getString("paysOrigineAssemblage"));
+                
+                listeDeclaration.add(declaration);
+            }
+
+            stmt.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return listeDeclaration;
+    }
 
 }
