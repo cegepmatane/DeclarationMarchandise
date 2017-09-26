@@ -18,6 +18,7 @@ public class VuePrincipale extends Application
 	private PanneauSupprimerItem panneauSupprimerItem;
 	private BorderPane panneauPrincipale;
 	private PanneauAjouterItem panneauAjouterItem;
+	private PanneauAfficherItem panneauAfficherItem;
 	
 	
 	
@@ -44,6 +45,13 @@ public class VuePrincipale extends Application
 		
 		scenePrincipale.setScene(scene);
 		scenePrincipale.show();
+	}
+	
+	public void construirePanneauAfficherListe(Declaration declaration)
+	{
+		panneauAfficherItem = new PanneauAfficherItem(declaration);
+		
+		panneauPrincipale.setCenter(panneauAfficherItem);
 	}
 	
 	public void construirePanneauModifierListe(Declaration declaration)

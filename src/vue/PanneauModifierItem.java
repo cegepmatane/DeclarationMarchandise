@@ -2,7 +2,7 @@ package vue;
 
 import java.sql.SQLException;
 
-import controleur.ControleurVue;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -11,8 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-import modele.Armateur;
-import modele.ArmateurDAO;
+import modele.Declaration;
 
 public class PanneauModifierItem extends Region
 {

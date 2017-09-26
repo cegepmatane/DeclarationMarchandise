@@ -2,6 +2,7 @@ package controleur;
 
 import java.sql.SQLException;
 
+
 import modele.Declaration;
 import vue.VuePrincipale;
 
@@ -24,9 +25,9 @@ public class Controleur
 		this.vuePrincipale = vuePrincipale;
 	}
 
-	public void actionRetourEnArriere() {
-		// TODO Auto-generated method stub
-		
+	public void actionRetourEnArriere() throws SQLException 
+	{
+		this.vuePrincipale.construirePanneauListe();
 	}
 
 	public void actionAjouterItem() {
@@ -39,8 +40,9 @@ public class Controleur
 		
 	}
 
-	public void actionAfficherItem(Declaration declaration) {
-		// TODO Auto-generated method stub
-		
+	public void actionAfficherItem(Declaration declaration) 
+	{
+		System.out.println(declaration.getIdDeclaration());
+		this.vuePrincipale.construirePanneauAfficherListe(declaration);
 	}
 }
