@@ -61,6 +61,35 @@ public class DeclarationDAO
 
         return listeDeclaration;
     }
+    
+    public void modifierDeclaration(Declaration declaration){
+    	
+   	 try{
+         Statement stmt = conn.createStatement();
+         
+         //String sqlAjouterHistorique = "INSERT INTO `historique`(`idDeclaration`, `nomBateau`, `nomMarchandise`, `descriptionMarchandise`, `typeMarchandise`, `paysOrigineMatierePremiere`, `paysOrigineAssemblage`) VALUES ( \"" + declaration.getIdDeclaration() + "\" , \"" + declaration.getNomBateau() + "\", \"" + declaration.getNomMarchandise() + "\", \"" + declaration.getDescriptionMarchandise() + "\", \"" + declaration.getTypeMarchandise() + "\", \"" + declaration.getPaysOrigineMatierePremiere() + "\", \"" + declaration.getPaysOrigineAssemblage() + "\")";
+         String sqlModifierDeclaration = "UPDATE declaration SET nomBateau=\"" + declaration.getNomBateau() + "\",nomMarchandise=\"" + declaration.getNomMarchandise() + "\",descriptionMarchandise=\"" + declaration.getDescriptionMarchandise() + "\",typeMarchandise=\"" + declaration.getTypeMarchandise() +"\",paysOrigineMatierePremiere=\"" + declaration.getPaysOrigineMatierePremiere() + "\",paysOrigineAssemblage=\"" + declaration.getPaysOrigineAssemblage() + "\" WHERE idDeclaration=" + declaration.getIdDeclaration() + "";
+         stmt.executeUpdate(sqlModifierDeclaration); //updateQuery
+         stmt.close();
+     }
+     catch (Exception e){
+         e.printStackTrace();
+     }
+        
+    }
+    
+    public void ajoutHistorique(Declaration declaration){
+    	 try{
+             Statement stmt = conn.createStatement();
+             
+             String sqlAjouterHistorique = "INSERT INTO `historique`(`idDeclaration`, `nomBateau`, `nomMarchandise`, `descriptionMarchandise`, `typeMarchandise`, `paysOrigineMatierePremiere`, `paysOrigineAssemblage`) VALUES ( \"" + declaration.getIdDeclaration() + "\" , \"" + declaration.getNomBateau() + "\", \"" + declaration.getNomMarchandise() + "\", \"" + declaration.getDescriptionMarchandise() + "\", \"" + declaration.getTypeMarchandise() + "\", \"" + declaration.getPaysOrigineMatierePremiere() + "\", \"" + declaration.getPaysOrigineAssemblage() + "\")";
+             stmt.executeUpdate(sqlAjouterHistorique); //updateQuery
+             stmt.close();
+         }
+         catch (Exception e){
+             e.printStackTrace();
+         }
+    }
 
 	public void supprimerDeclaration(int id) {
 		// TODO Auto-generated method stub

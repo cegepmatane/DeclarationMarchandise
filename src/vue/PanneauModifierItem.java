@@ -2,7 +2,7 @@ package vue;
 
 import java.sql.SQLException;
 
-
+import controleur.Controleur;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -12,17 +12,24 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import modele.Declaration;
+import modele.DeclarationDAO;
 
 public class PanneauModifierItem extends Region
 {
-	Armateur armateur;
+Declaration declaration;
 	
-	TextField nomArmateur = new TextField();
+	TextField nomBateau = new TextField();
+	TextField nomMarchandise = new TextField();
+	TextField descriptionMarchandise = new TextField();
+	TextField typeMarchandise = new TextField();
+	TextField paysOrigineMatierePremiere = new TextField();
+	TextField paysOrigineAssemblage = new TextField();
+	
 	
 	public PanneauModifierItem(Declaration declaration)
 	{
 		super();
-		this.armateur = armateur;
+		this.declaration = declaration;
 		ConstruirePanneau();
 	}
 
@@ -33,9 +40,15 @@ public class PanneauModifierItem extends Region
 		grid.setVgap(10);
 		grid.setPadding(new Insets(25, 25, 25, 25));
 		
-		this.nomArmateur.setText(armateur.getNom());
+		this.nomBateau.setText(declaration.getNomBateau());
+		this.nomMarchandise.setText(declaration.getNomMarchandise());
+		this.descriptionMarchandise.setText(declaration.getDescriptionMarchandise());
+		this.typeMarchandise.setText(declaration.getTypeMarchandise());
+		this.paysOrigineMatierePremiere.setText(declaration.getPaysOrigineMatierePremiere());
+		this.paysOrigineAssemblage.setText(declaration.getPaysOrigineAssemblage());
 		
-		Label labelTitreModifierItem = new Label("Modifier");
+		
+		Label labelTitreAfficherItem = new Label("Afficher une marchandise");
 		
 		Button btnActionRetourEnArriere = new Button("Retour");
 		btnActionRetourEnArriere.setOnAction(new EventHandler<ActionEvent>() 
@@ -44,7 +57,7 @@ public class PanneauModifierItem extends Region
 			public void handle(ActionEvent event) 
 			{
 				try {
-					ControleurVue.getInstance().actionRetourEnArriere();
+					Controleur.getInstance().actionRetourEnArriere();
 				} catch (SQLException | ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -52,33 +65,39 @@ public class PanneauModifierItem extends Region
 			}
 		});
 		
-		Button BtnActionSauvegardeeModification = new Button("Sauvegarde");
-		BtnActionSauvegardeeModification.setOnAction(new EventHandler<ActionEvent>() 
+		Button btnActionSauvegarder = new Button("Sauvegarder");
+		btnActionSauvegarder.setOnAction(new EventHandler<ActionEvent>() 
 		{
 			@Override
 			public void handle(ActionEvent event) 
 			{
-				//set de l'armateur
-				armateur.setNom(nomArmateur.getText());
+				DeclarationDAO.getInstance().ajoutHistorique(declaration);
 				
-				//TODO: a faire Sauvegarde;
-				System.out.println(armateur.getIdArmateur() + " Sauvegarder");
-				try {
-					System.out.println("control: sauvegarde");
-					ArmateurDAO.getInstance().modifierArmateur(armateur);
-					ControleurVue.getInstance().actionRetourEnArriere();
-				} catch (ClassNotFoundException | SQLException e) {
-					e.printStackTrace();
-				}
+				declaration.setNomBateau(nomBateau.getText());
+				declaration.setNomMarchandise(nomMarchandise.getText());
+				declaration.setDescriptionMarchandise(descriptionMarchandise.getText());
+				declaration.setTypeMarchandise(typeMarchandise.getText());
+				declaration.setPaysOrigineMatierePremiere(paysOrigineMatierePremiere.getText());
+				declaration.setPaysOrigineAssemblage(paysOrigineAssemblage.getText());
+				
+				DeclarationDAO.getInstance().modifierDeclaration(declaration);
 			}
 		});
 		
-		grid.add(labelTitreModifierItem, 0, 0);
-		grid.add(btnActionRetourEnArriere, 0, 1);
-		grid.add(BtnActionSauvegardeeModification, 2, 1);
 		
-		addTextField(grid, nomArmateur, "Nom : ", 0, 2);
 		
+		grid.add(labelTitreAfficherItem, 0, 0);
+		
+		addTextField(grid, nomBateau, "Nom : ", 0, 2);
+		addTextField(grid, nomMarchandise, "Marchandise : ", 0, 4);
+		addTextField(grid, descriptionMarchandise, "Description : ", 0, 6);
+		addTextField(grid, typeMarchandise, "Type : ", 0, 8);
+		addTextField(grid, paysOrigineMatierePremiere, "Pays d'origine MP : ", 0, 10);
+		addTextField(grid, paysOrigineAssemblage, "Pays d'origine Assemblage : ", 0, 12);
+		
+		grid.add(btnActionRetourEnArriere, 0, 13);
+		grid.add(btnActionSauvegarder, 1, 13);
+
 		this.getChildren().add(grid);
 	}
 	

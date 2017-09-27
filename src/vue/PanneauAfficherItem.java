@@ -73,7 +73,6 @@ public class PanneauAfficherItem extends Region
 		
 		
 		grid.add(labelTitreAfficherItem, 0, 0);
-		grid.add(btnActionRetourEnArriere, 0, 1);
 		
 		addTextField(grid, nomBateau, "Nom : ", 0, 2);
 		addTextField(grid, nomMarchandise, "Marchandise : ", 0, 4);
@@ -82,6 +81,8 @@ public class PanneauAfficherItem extends Region
 		addTextField(grid, paysOrigineMatierePremiere, "Pays d'origine MP : ", 0, 10);
 		addTextField(grid, paysOrigineAssemblage, "Pays d'origine Assemblage : ", 0, 12);
 		
+		grid.add(btnActionRetourEnArriere, 0, 13);
+
 		this.getChildren().add(grid);
 	}
 	

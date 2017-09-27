@@ -36,13 +36,13 @@ public class Controleur
 	}
 
 	public void actionModifierItem(Declaration declaration) {
-		// TODO Auto-generated method stub
+		this.vuePrincipale.construirePanneauModifierListe(declaration);
 		
 	}
+	
 
 	public void actionAfficherItem(Declaration declaration) 
 	{
-		System.out.println(declaration.getIdDeclaration());
 		this.vuePrincipale.construirePanneauAfficherListe(declaration);
 	}
 }
