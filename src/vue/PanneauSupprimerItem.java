@@ -1,6 +1,6 @@
 package vue;
 
-import controleur.ControleurVue;
+import controleur.Controleur;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-import modele.ArmateurDAO;
+import modele.DeclarationDAO;
 
 import java.sql.*;
 
@@ -29,7 +29,7 @@ public class PanneauSupprimerItem extends Region {
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
 
-        Label labelTitreSupprimerItem = new Label("Supprimer le transporteur sélectionné ?");
+        Label labelTitreSupprimerItem = new Label("Supprimer la marchandise sélectionnée ?");
 
         Button btnActionRetourEnArriere = new Button("Annuler");
         btnActionRetourEnArriere.setOnAction(new EventHandler<ActionEvent>()
@@ -38,7 +38,7 @@ public class PanneauSupprimerItem extends Region {
             public void handle(ActionEvent event)
             {
                 try {
-                    ControleurVue.getInstance().actionRetourEnArriere();
+                    Controleur.getInstance().actionRetourEnArriere();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -52,8 +52,8 @@ public class PanneauSupprimerItem extends Region {
             public void handle(ActionEvent event)
             {
                 try {
-                    ArmateurDAO.getInstance().supprimerArmateur(id);
-                    ControleurVue.getInstance().actionRetourEnArriere();
+                    DeclarationDAO.getInstance().supprimerDeclaration(id);
+                    Controleur.getInstance().actionRetourEnArriere();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

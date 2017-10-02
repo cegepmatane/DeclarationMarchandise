@@ -92,8 +92,16 @@ public class DeclarationDAO
     }
 
 	public void supprimerDeclaration(int id) {
-		// TODO Auto-generated method stub
-		
+        try{
+            Statement stmt = conn.createStatement();
+
+            String REQUETE_SUPPRIMER_DECLARATION = "DELETE FROM `declaration` WHERE `declaration`.`idDeclaration` = " + id;
+            stmt.executeUpdate(REQUETE_SUPPRIMER_DECLARATION);
+            stmt.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
 	}
 
 	public void ajouterDeclaration(Declaration declaration) throws SQLException {
