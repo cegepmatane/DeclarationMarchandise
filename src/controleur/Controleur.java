@@ -31,7 +31,7 @@ public class Controleur
 	}
 
 	public void actionAjouterItem() {
-		// TODO Auto-generated method stub
+		this.vuePrincipale.construirePanneauAjouterItem();
 		
 	}
 

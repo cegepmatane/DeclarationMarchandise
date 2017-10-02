@@ -96,4 +96,12 @@ public class DeclarationDAO
 		
 	}
 
+	public void ajouterDeclaration(Declaration declaration) throws SQLException {
+        Statement stmt = conn.createStatement();
+
+        String sqlAjouterDeclaration = "INSERT INTO `declaration` (`idDeclaration`, `nomBateau`, `nomMarchandise`, `descriptionMarchandise`, `typeMarchandise`, `paysOrigineMatierePremiere`, `paysOrigineAssemblage`) VALUES (null, '" + declaration.getNomBateau() + "', '" + declaration.getNomMarchandise() + "', '" + declaration.getDescriptionMarchandise() + "', '" + declaration.getTypeMarchandise() + "', '" + declaration.getPaysOrigineMatierePremiere() + "', '" + declaration.getPaysOrigineAssemblage() + "');";
+        stmt.executeUpdate(sqlAjouterDeclaration);
+        stmt.close();
+    }
+
 }
