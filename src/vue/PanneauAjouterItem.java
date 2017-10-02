@@ -93,11 +93,16 @@ public class PanneauAjouterItem extends Region {
         grid.add(BtnActionSauvegardeeModification, 2, 7);
 
         this.getChildren().add(grid);
-        grid.add(champNomBateau,0,1);
-        grid.add(champNomMarchandise,0,2);
-        grid.add(champDescriptionMarchandise,0,3);
-        grid.add(champTypeMarchandise,0,4);
-        grid.add(champPaysOrigineMatierePremiere,0,5);
-        grid.add(champPaysOrigineAssemblage,0,6);
+        addTextField(grid, champNomBateau,"Nom du bateau : " ,0,1);
+        addTextField(grid, champNomMarchandise,"Nom de la marchandise : " ,0,2);
+        addTextField(grid, champDescriptionMarchandise,"Description de la marchandise : ",0,3);
+        addTextField(grid, champTypeMarchandise,"Type de marchandise : ",0,4);
+        addTextField(grid, champPaysOrigineMatierePremiere,"Pays origine de la matière première : ",0,5);
+        addTextField(grid, champPaysOrigineAssemblage,"Pays origine de l'assemblage : ",0,6);
+    }
+
+    private void addTextField(GridPane grid, TextField textField,String texteLabel, int colonne, int ligne){
+        grid.add(new Label(texteLabel), colonne, ligne);
+        grid.add(textField, colonne+1, ligne);
     }
 }
