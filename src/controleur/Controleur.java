@@ -40,8 +40,8 @@ public class Controleur
 		
 	}
 
-	public void actionSupprimerItem(int id){
-		this.vuePrincipale.construirePanneauSupprimerItem(id);
+	public void actionSupprimerItem(Declaration declaration){
+		this.vuePrincipale.construirePanneauSupprimerItem(declaration);
 	}
 	
 

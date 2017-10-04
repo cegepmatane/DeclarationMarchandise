@@ -8,18 +8,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import modele.Declaration;
 import modele.DeclarationDAO;
 
 import java.sql.*;
 
 public class PanneauSupprimerItem extends Region {
 
-    private int id;
+	private Declaration declaration;
 
-    public PanneauSupprimerItem(int id) {
+    public PanneauSupprimerItem(Declaration declaration) {
         super();
         construirePanneau();
-        this.id = id;
+        this.declaration = declaration;
     }
 
     private void construirePanneau()
@@ -29,7 +30,7 @@ public class PanneauSupprimerItem extends Region {
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
 
-        Label labelTitreSupprimerItem = new Label("Supprimer la marchandise sélectionnée ?");
+        Label labelTitreSupprimerItem = new Label("Supprimer la marchandise selectionnee ?");
 
         Button btnActionRetourEnArriere = new Button("Annuler");
         btnActionRetourEnArriere.setOnAction(new EventHandler<ActionEvent>()
@@ -52,7 +53,8 @@ public class PanneauSupprimerItem extends Region {
             public void handle(ActionEvent event)
             {
                 try {
-                    DeclarationDAO.getInstance().supprimerDeclaration(id);
+                	DeclarationDAO.getInstance().ajoutHistorique(declaration);
+                    DeclarationDAO.getInstance().supprimerDeclaration(declaration.getIdDeclaration());
                     Controleur.getInstance().actionRetourEnArriere();
                 } catch (Exception e) {
                     e.printStackTrace();

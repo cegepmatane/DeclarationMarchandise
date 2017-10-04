@@ -70,7 +70,7 @@ public class PanneauItemListe extends Region
 			public void handle(ActionEvent event)
 			{
 				try{
-					Controleur.getInstance().actionSupprimerItem(declaration.getIdDeclaration());
+					Controleur.getInstance().actionSupprimerItem(declaration);
 				}
 				catch(Exception e){
 					e.printStackTrace();
