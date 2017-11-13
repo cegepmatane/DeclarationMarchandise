@@ -31,10 +31,10 @@ public class PanneauAjouterItem extends Region {
     }
 
     private void ConstruirePanneau() {
-        GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(25, 25, 25, 25));
+        GridPane grille = new GridPane();
+        grille.setHgap(10);
+        grille.setVgap(10);
+        grille.setPadding(new Insets(25, 25, 25, 25));
 
         Label labelTitreAjouterItem = new Label("Ajouter");
 
@@ -48,13 +48,13 @@ public class PanneauAjouterItem extends Region {
         Button btnActionRetourEnArriere = new Button("Retour");
         btnActionRetourEnArriere.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event) {
+            public void handle(ActionEvent action) {
 
                 try {
                     Controleur.getInstance().actionRetourEnArriere();
-                } catch (ClassNotFoundException | SQLException e) {
+                } catch (ClassNotFoundException | SQLException evenement) {
                     // TODO Auto-generated catch block
-                    e.printStackTrace();
+                    evenement.printStackTrace();
                 }
 
             }
@@ -63,7 +63,7 @@ public class PanneauAjouterItem extends Region {
         Button BtnActionSauvegardeeModification = new Button("Sauvegarde");
         BtnActionSauvegardeeModification.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event) {
+            public void handle(ActionEvent action) {
                 String nomBateau = champNomBateau.getText();
                 String nomMarchandise = champNomMarchandise.getText();
                 String descriptionMarchandise = champDescriptionMarchandise.getText();
@@ -80,27 +80,27 @@ public class PanneauAjouterItem extends Region {
                 try {
                     DeclarationDAO.getInstance().ajouterDeclaration(declaration);
                     Controleur.getInstance().actionRetourEnArriere();
-                } catch (ClassNotFoundException | SQLException e) {
-                    e.printStackTrace();
+                } catch (ClassNotFoundException | SQLException evenement) {
+                    evenement.printStackTrace();
                 }
             }
         });
 
-        grid.add(labelTitreAjouterItem, 0, 0);
-        grid.add(btnActionRetourEnArriere, 0, 7);
-        grid.add(BtnActionSauvegardeeModification, 2, 7);
+        grille.add(labelTitreAjouterItem, 0, 0);
+        grille.add(btnActionRetourEnArriere, 0, 7);
+        grille.add(BtnActionSauvegardeeModification, 2, 7);
 
-        this.getChildren().add(grid);
-        addTextField(grid, champNomBateau,"Nom du bateau : " ,0,1);
-        addTextField(grid, champNomMarchandise,"Nom de la marchandise : " ,0,2);
-        addTextField(grid, champDescriptionMarchandise,"Description de la marchandise : ",0,3);
-        addTextField(grid, champTypeMarchandise,"Type de marchandise : ",0,4);
-        addTextField(grid, champPaysOrigineMatierePremiere,"Pays origine de la matière première : ",0,5);
-        addTextField(grid, champPaysOrigineAssemblage,"Pays origine de l'assemblage : ",0,6);
+        this.getChildren().add(grille);
+        addTextField(grille, champNomBateau,"Nom du bateau : " ,0,1);
+        addTextField(grille, champNomMarchandise,"Nom de la marchandise : " ,0,2);
+        addTextField(grille, champDescriptionMarchandise,"Description de la marchandise : ",0,3);
+        addTextField(grille, champTypeMarchandise,"Type de marchandise : ",0,4);
+        addTextField(grille, champPaysOrigineMatierePremiere,"Pays origine de la matière première : ",0,5);
+        addTextField(grille, champPaysOrigineAssemblage,"Pays origine de l'assemblage : ",0,6);
     }
 
-    private void addTextField(GridPane grid, TextField textField,String texteLabel, int colonne, int ligne){
-        grid.add(new Label(texteLabel), colonne, ligne);
-        grid.add(textField, colonne+1, ligne);
+    private void addTextField(GridPane grille, TextField texte,String texteLabel, int colonne, int ligne){
+        grille.add(new Label(texteLabel), colonne, ligne);
+        grille.add(texte, colonne+1, ligne);
     }
 }

@@ -24,47 +24,47 @@ public class PanneauSupprimerItem extends Region {
 
     private void construirePanneau()
     {
-        GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(25, 25, 25, 25));
+        GridPane grille = new GridPane();
+        grille.setHgap(10);
+        grille.setVgap(10);
+        grille.setPadding(new Insets(25, 25, 25, 25));
 
         Label labelTitreSupprimerItem = new Label("Supprimer la marchandise selectionnee ?");
 
-        Button btnActionRetourEnArriere = new Button("Annuler");
-        btnActionRetourEnArriere.setOnAction(new EventHandler<ActionEvent>()
+        Button boutonActionRetourEnArriere = new Button("Annuler");
+        boutonActionRetourEnArriere.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
             public void handle(ActionEvent event)
             {
                 try {
                     Controleur.getInstance().actionRetourEnArriere();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                } catch (Exception evenement) {
+                    evenement.printStackTrace();
                 }
             }
         });
 
-        Button btnActionSupprimer = new Button("Supprimer");
-        btnActionSupprimer.setOnAction(new EventHandler<ActionEvent>()
+        Button boutonActionSupprimer = new Button("Supprimer");
+        boutonActionSupprimer.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
-            public void handle(ActionEvent event)
+            public void handle(ActionEvent action)
             {
                 try {
                 	DeclarationDAO.getInstance().ajoutHistorique(declaration);
                     DeclarationDAO.getInstance().supprimerDeclaration(declaration.getIdDeclaration());
                     Controleur.getInstance().actionRetourEnArriere();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                } catch (Exception evenement) {
+                    evenement.printStackTrace();
                 }
             }
         });
 
-        grid.add(labelTitreSupprimerItem, 0, 0);
-        grid.add(btnActionRetourEnArriere, 0, 1);
-        grid.add(btnActionSupprimer, 2, 1);
+        grille.add(labelTitreSupprimerItem, 0, 0);
+        grille.add(boutonActionRetourEnArriere, 0, 1);
+        grille.add(boutonActionSupprimer, 2, 1);
 
-        this.getChildren().add(grid);
+        this.getChildren().add(grille);
     }
 }

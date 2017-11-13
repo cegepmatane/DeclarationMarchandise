@@ -17,51 +17,51 @@ import modele.Declaration;
 public class PanneauListe extends Region
 {
 	private ListView<PanneauItemListe> panneauListeItem;
-	private List<Declaration> list;
+	private List<Declaration> liste;
 	
 	public PanneauListe(List<Declaration> list)
 	{
 		super();
-		this.list = list;
+		this.liste = liste;
 		ConstruirePanneau();
 	}
 
 	private void ConstruirePanneau() 
 	{
-		VBox vBox = new VBox();
-		vBox.setPadding(new Insets(10));
-		vBox.setPrefSize(400, (600-30));
+		VBox boite = new VBox();
+		boite.setPadding(new Insets(10));
+		boite.setPrefSize(400, (600-30));
 		
-		Button btnActionAjouterItem = new Button("Ajouter");
-		btnActionAjouterItem.setPrefSize(200, 15);
-		btnActionAjouterItem.setOnAction(new EventHandler<ActionEvent>() 
+		Button boutonActionAjouterItem = new Button("Ajouter");
+		boutonActionAjouterItem.setPrefSize(200, 15);
+		boutonActionAjouterItem.setOnAction(new EventHandler<ActionEvent>() 
 		{
 			@Override
-			public void handle(ActionEvent event) 
+			public void handle(ActionEvent action) 
 			{
 				try {
 					Controleur.getInstance().actionAjouterItem();
-				} catch (ClassNotFoundException | SQLException e) {
+				} catch (ClassNotFoundException | SQLException evenement) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					evenement.printStackTrace();
 				}
 			}
 		});
-		vBox.getChildren().add(btnActionAjouterItem);
+		boite.getChildren().add(boutonActionAjouterItem);
 		
 		panneauListeItem = new ListView<PanneauItemListe>();
 		panneauListeItem.setPrefSize(400, 600 - 30);
-		construireVueListeItem(list);
+		construireVueListeItem(liste);
 		
 		
-		vBox.getChildren().add(panneauListeItem);
-		this.getChildren().add(vBox);
+		boite.getChildren().add(panneauListeItem);
+		this.getChildren().add(boite);
 	}
 	
-	private void construireVueListeItem(List<Declaration> list)
+	private void construireVueListeItem(List<Declaration> liste)
 	{
 		
-		for(Declaration declaration : list)
+		for(Declaration declaration : liste)
 		{
 			panneauListeItem.getItems().add(new PanneauItemListe(declaration));
 		}

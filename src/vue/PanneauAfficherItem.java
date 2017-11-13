@@ -34,10 +34,10 @@ public class PanneauAfficherItem extends Region
 
 	private void ConstruirePanneau() 
 	{
-		GridPane grid = new GridPane();
-		grid.setHgap(10);
-		grid.setVgap(10);
-		grid.setPadding(new Insets(25, 25, 25, 25));
+		GridPane grille = new GridPane();
+		grille.setHgap(10);
+		grille.setVgap(10);
+		grille.setPadding(new Insets(25, 25, 25, 25));
 		
 		this.nomBateau.setText(declaration.getNomBateau());
 		this.nomBateau.setEditable(false);
@@ -59,35 +59,35 @@ public class PanneauAfficherItem extends Region
 		btnActionRetourEnArriere.setOnAction(new EventHandler<ActionEvent>() 
 		{
 			@Override
-			public void handle(ActionEvent event) 
+			public void handle(ActionEvent action) 
 			{
 				try {
 					Controleur.getInstance().actionRetourEnArriere();
-				} catch (SQLException | ClassNotFoundException e) {
+				} catch (SQLException | ClassNotFoundException evenement) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					evenement.printStackTrace();
 				}
 			}
 		});
 		
 		
 		
-		grid.add(labelTitreAfficherItem, 0, 0);
+		grille.add(labelTitreAfficherItem, 0, 0);
 		
-		addTextField(grid, nomBateau, "Nom : ", 0, 2);
-		addTextField(grid, nomMarchandise, "Marchandise : ", 0, 4);
-		addTextField(grid, descriptionMarchandise, "Description : ", 0, 6);
-		addTextField(grid, typeMarchandise, "Type : ", 0, 8);
-		addTextField(grid, paysOrigineMatierePremiere, "Pays d'origine MP : ", 0, 10);
-		addTextField(grid, paysOrigineAssemblage, "Pays d'origine Assemblage : ", 0, 12);
+		addTextField(grille, nomBateau, "Nom : ", 0, 2);
+		addTextField(grille, nomMarchandise, "Marchandise : ", 0, 4);
+		addTextField(grille, descriptionMarchandise, "Description : ", 0, 6);
+		addTextField(grille, typeMarchandise, "Type : ", 0, 8);
+		addTextField(grille, paysOrigineMatierePremiere, "Pays d'origine MP : ", 0, 10);
+		addTextField(grille, paysOrigineAssemblage, "Pays d'origine Assemblage : ", 0, 12);
 		
-		grid.add(btnActionRetourEnArriere, 0, 13);
+		grille.add(btnActionRetourEnArriere, 0, 13);
 
-		this.getChildren().add(grid);
+		this.getChildren().add(grille);
 	}
 	
-    private void addTextField(GridPane grid, TextField textField,String texteLabel, int colonne, int ligne){
-        grid.add(new Label(texteLabel), colonne, ligne);
-        grid.add(textField, colonne+1, ligne);
+    private void addTextField(GridPane grille, TextField texte,String texteLabel, int colonne, int ligne){
+        grille.add(new Label(texteLabel), colonne, ligne);
+        grille.add(texte, colonne+1, ligne);
     }
 }

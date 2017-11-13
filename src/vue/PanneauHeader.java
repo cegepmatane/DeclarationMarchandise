@@ -15,15 +15,15 @@ public class PanneauHeader extends Region
 
 	private void ConstruirePanneau() 
 	{
-		HBox hBox = new HBox();
+		HBox boite = new HBox();
 		
 		Label labelNomProgramme = new Label();
 		labelNomProgramme.setId("labelNomProgramme");
 		labelNomProgramme.setText("Liste des declarations");
-		hBox.getChildren().add(labelNomProgramme);
+		boite.getChildren().add(labelNomProgramme);
 		
 		//TODO: add Logo;
 		
-		this.getChildren().add(hBox);
+		this.getChildren().add(boite);
 	}
 }

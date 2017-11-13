@@ -13,7 +13,7 @@ import modele.Declaration;
 
 public class PanneauItemListe extends Region
 {
-	private HBox itemBoite;
+	private HBox declarationBoite;
 	private String nomItem;
 	
 	public PanneauItemListe(Declaration declaration)
@@ -26,10 +26,10 @@ public class PanneauItemListe extends Region
 
 	private void ConstruirePanneau(Declaration declaration) 
 	{
-		itemBoite = new HBox();
+		declarationBoite = new HBox();
 		
 		Label label = new Label(this.nomItem);
-		itemBoite.getChildren().add(label);
+		declarationBoite.getChildren().add(label);
 		
 		Button btnActionAfficher = new Button("Afficher");
 		btnActionAfficher.setOnAction(new EventHandler<ActionEvent>() 
@@ -45,7 +45,7 @@ public class PanneauItemListe extends Region
 				}
 			}
 		});
-		itemBoite.getChildren().add(btnActionAfficher);
+		declarationBoite.getChildren().add(btnActionAfficher);
 		
 		Button btnActionModifier = new Button("Modifier");
 		btnActionModifier.setOnAction(new EventHandler<ActionEvent>() 
@@ -61,7 +61,7 @@ public class PanneauItemListe extends Region
 				}
 			}
 		});
-		itemBoite.getChildren().add(btnActionModifier);
+		declarationBoite.getChildren().add(btnActionModifier);
 
 		Button btnActionSupprimer = new Button("Supprimer");
 		btnActionSupprimer.setOnAction(new EventHandler<ActionEvent>()
@@ -77,9 +77,9 @@ public class PanneauItemListe extends Region
 				}
 			}
 		});
-		itemBoite.getChildren().add(btnActionSupprimer);
+		declarationBoite.getChildren().add(btnActionSupprimer);
 		
-		this.getChildren().add(itemBoite);
+		this.getChildren().add(declarationBoite);
 	}
 
 }
