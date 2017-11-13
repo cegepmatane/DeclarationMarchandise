@@ -11,7 +11,6 @@ import javafx.scene.layout.Region;
 import modele.Declaration;
 import modele.DeclarationDAO;
 
-import java.sql.*;
 
 public class PanneauSupprimerItem extends Region {
 
